@@ -5,30 +5,49 @@
 
     <Grid>
 
-    <Image x:Name= "ceu"
-    Source="ceu.png"
-    Aspect="AspectFill"
-           Margin="0"
-           HorizontalOptions="Fill"
-           VerticalOptions="Fill"/>
+    <HorizontalStackLayout  x:Name= "ceu">
+    <Image Source="ceu.png"/>
+    <Image Source="ceu.png"/>
+    <Image Source="ceu.png"/>
+        </HorizontalStackLayout>
 
-    <Image x:Name="predios"
-    Source="predios.png"
-   />
+    <HorizontalStackLayout  x:Name= "predios">
+    <Image Source="predios.png"/>
+     <Image Source="predios.png"/>
+       <Image Source="predios.png"/>
+    </HorizontalStackLayout>
 
-    <Image x:Name="arvores"
-    Source="arvores.png"/>
+
+    <HorizontalStackLayout  x:Name= "arvores">
+    <Image Source="arvores.png"/>
+    <Image Source="arvores.png"/>
+    <Image Source="arvores.png"/>
+     </HorizontalStackLayout>
    
 
-    <Image x:Name="grama"
-    Source="grama.png"
-    Margin="0"
+    <HorizontalStackLayout x:Name="grama">
+       <Image Source="grama.png" 
+       Margin="0"
            HeightRequest="120"
            Aspect="Fill"
            HorizontalOptions="Fill"
            VerticalOptions="End"/>
+   <Image Source="grama.png"
+   Margin="0"
+           HeightRequest="120"
+           Aspect="Fill"
+           HorizontalOptions="Fill"
+           VerticalOptions="End"/>
+   <Image Source="grama.png"
+   Margin="0"
+           HeightRequest="120"
+           Aspect="Fill"
+           HorizontalOptions="Fill"
+           VerticalOptions="End"/>
+
+    </HorizontalStackLayout>
+
    
-    
    
     </Grid>
 
