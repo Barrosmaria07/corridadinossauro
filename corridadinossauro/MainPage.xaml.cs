@@ -3,159 +3,103 @@
 public partial class MainPage : ContentPage
 {
 
-	bool estaMorto=false;
-	bool estaPulando=false;
-	const int tempoEntreFrames=25;
-	int velocidade1=0;
-	int velocidade2=0;
-	int velocidade3=0;
-	int velocidade=0;
-	int larguraJanela=0;
-	int alturaJanela=0;
+	bool estaMorto = false;
+	bool estaPulando = false;
+	const int tempoEntreFrames = 25;
+	int velocidade1 = 0;
+	int velocidade2 = 0;
+	int velocidade3 = 0;
+	int velocidade = 0;
+	int larguraJanela = 0;
+	int alturaJanela = 0;
+	Player player;
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+		Desenha();
+    }
 
 
     protected override void OnSizeAllocated(double width, double height)
-    {
-        base.OnSizeAllocated(width, height);
-		CorrigeTamanhoCenario(width,height);
+	{
+		base.OnSizeAllocated(width, height);
+		CorrigeTamanhoCenario(width, height);
 		CalculaVelocidade(width);
-    }
+	}
 
 	void CalculaVelocidade(double width)
 	{
-		velocidade1=(int)(width*0.001);
-		velocidade2=(int)(width*0.004);
-		velocidade3=(int)(width*0.008);
-		velocidade=(int)(width*0.01);
+		velocidade1 = (int)(width * 0.001);
+		velocidade2 = (int)(width * 0.004);
+		velocidade3 = (int)(width * 0.008);
+		velocidade = (int)(width * 0.01);
 	}
 
-	void CorrigeTamanhoCenario(double width,double height)
+	void CorrigeTamanhoCenario(double width, double height)
 	{
-		foreach(var A in HSLayer1.Children)
-		(A as Image).WidthRequest=width;
-		foreach(var A in HSLayer2.Children)
-		(A as Image ).WidthRequest=width;
-		foreach(var A in HSLayer3.Children)
-		(A as Image).WidthRequest=width;
-		foreach(var A in HSLayerChao.Children)
-		(A as Image).WidthRequest=width;
+		foreach (var a in HSLayer1.Children)
+			(a as Image).WidthRequest = width;
+		foreach (var a in HSLayer2.Children)
+			(a as Image).WidthRequest = width;
+		foreach (var a in HSLayer3.Children)
+			(a as Image).WidthRequest = width;
+		foreach (var a in HSLayerChao.Children)
+			(a as Image).WidthRequest = width;
 
-		HSLayer1.WidthRequest=width*1.5;
-		HSLayer2.WidthRequest=width*1.5;
-		HSLayer3.WidthRequest=width*1.5;
-		HSLayerChao.WidthRequest=width*1.5;
+		HSLayer1.WidthRequest = width;
+		HSLayer2.WidthRequest = width;
+		HSLayer3.WidthRequest = width;
+		HSLayerChao.WidthRequest = width;
 
 	}
 
-    void Gerencia Cenarios()
-{
-	MoveCenario();
-	GerenciaCenario (HSLayer1);
-	GerenciaCenario (HSLayer2);
-	GerenciaCenario (HSLayer3);
-	GerenciaCenario (HSLayer4);
-}
-
-void Move Cenario()
-{
-	HSLayer1.TranslationX-=velocidade1;
-	HSLayer1.TranslationX-=velocidade2;
-	HSLayer1.TranslationX-=velocidade3;
-	ASLayerChao.TranslationX-=velocidade;
-
-}
-
-void Gerencia Cenario(HorizontalStackLayout HSL)
-{
-	var view = (HSL.Children.First()as Image);
-	if(view.WidthRequest+HSL.TranslationX<0)
+	void GerenciaCenarios()
 	{
-		HSL.Children.Remove(view);
-		HSL.Children.Add(view);
-		HSL.TranslationX=view.TranslationX;
+		MoveCenario();
+		GerenciaCenario(HSLayer1);
+		GerenciaCenario(HSLayer2);
+		GerenciaCenario(HSLayer3);
+		GerenciaCenario(HSLayerChao);
 	}
-}
 
-async Task Desenha()
-{
-	while(!estaMorto)
+	void MoveCenario()
 	{
-		GerenciaCenarios()
-		await Task.Delay(tempoEntreFrames);
+		HSLayer1.TranslationX -= velocidade1;
+		HSLayer1.TranslationX -= velocidade2;
+		HSLayer1.TranslationX -= velocidade3;
+		HSLayerChao.TranslationX -= velocidade;
+
 	}
-}
+
+	void GerenciaCenario(HorizontalStackLayout HSL)
+	{
+		var view = (HSL.Children.First() as Image);
+		if (view.WidthRequest + HSL.TranslationX < 0)
+		{
+			HSL.Children.Remove(view);
+			HSL.Children.Add(view);
+			HSL.TranslationX = view.TranslationX;
+		}
+	}
+
+	async Task Desenha()
+	{
+		while (!estaMorto)
+		{
+			GerenciaCenarios();
+			player.Desenha();
+			await Task.Delay(tempoEntreFrames);
+		}
+	}
 	public MainPage()
 	{
 		InitializeComponent();
+		player=new Player(dog);
+		player.Run();
 	}
 
-public class Animacao
-{
-	protected List<String> animacao1= new List<string>();
-	protected List<String> animacao2= new List<string>();
-	protected List<String> animacao3= new List<string>();
-	protected bool loop=true;
-	protected int animacaoAtiva=1;
-	bool parado=true;
-	int frameAtual=1;
-	protected Image compImagem;
-	public Animacao(Image a )
-	{
-		compImagem=a;
-	}
-
-	public void Stop()
-	{
-		parado=true;
-	}
-	public void Play()
-	{
-		parado=false;
-	}
-	public void SetAnimacaoAtiva(int A)
-	{
-		animacaoAtiva=A;
-	}
-
-}
-
-public void Desenha()
-{
-	if(parado)
-		return;
-		String nomeArquivo="";
-		int tamanhoAnimacao=0;
-		if(AnimacaoAtiva==1)
-		{
-			nomeArquivo= Animacao1[frameAtual];
-			tamanhoAnimacao=Animacao1.Count;
-		}
-		else if (AnimacaoAtiva==2)
-		{
-			nomeArquivo=Animacao2{frameAtual};
-			tamanhoAnimacao=Animacao2.Count;
-		}
-		else if (AnimacaoAtiva==3)
-		{
-			nomeArquivo=Animacao3{frameAtual};
-			tamanhoAnimacao=Animacao3.Count;
-		}
-		compImagem.Source=ImageSource.FromFile(nomeArquivo);
-		frameAtual++;
-		if(framAtual>=tamanhoAnimacao)
-		{
-			if(loop)
-				frameAtual=0;
-				else{
-					parado=true;
-					QuandoParar();
-				}
-		}
-}
-public virtual void QuandoParar()
-{
 	
-}
 
 }
 

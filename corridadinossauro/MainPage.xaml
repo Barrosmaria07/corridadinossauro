@@ -1,59 +1,82 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="corridadinossauro.MainPage">
+             x:Class="corridadinossauro.MainPage"
+             Shell.NavBarIsVisible="False">
 
     <Grid>
 
-    <HorizontalStackLayout  x:Name= "HSLayer1">
-    <Image Source="ceu.png"/>
-    <Image Source="ceu.png"/>
-    <Image Source="ceu.png"/>
+        <HorizontalStackLayout  x:Name="HSLayer1">
+            <Image Source="ceu.png"
+            Aspect="Fill"
+            VerticalOptions="Fill"/>
+            <Image Source="ceu.png"
+            VerticalOptions="Fill"
+             Aspect="Fill"/>
+            <Image Source="ceu.png"
+            VerticalOptions="Fill"
+            Aspect="Fill"
+            />
+            
+
         </HorizontalStackLayout>
 
-    <HorizontalStackLayout  x:Name= "HSLayer2">
-    <Image Source="predios.png"/>
-     <Image Source="predios.png"/>
-       <Image Source="predios.png"/>
-    </HorizontalStackLayout>
+        <HorizontalStackLayout  x:Name="HSLayer2">
+            <Image Source="predios.png"
+            VerticalOptions="Fill"
+            Aspect="Fill"/>
+            <Image Source="predios.png"
+            VerticalOptions="Fill"
+            Aspect="Fill"/>
+            <Image Source="predios.png"
+            VerticalOptions="Fill"
+            Aspect="Fill"/>
+        </HorizontalStackLayout>
 
 
-    <HorizontalStackLayout  x:Name= "HSLayer3">
-    <Image Source="arvores.png"/>
-    <Image Source="arvores.png"/>
-    <Image Source="arvores.png"/>
-     </HorizontalStackLayout>
-   
+        <HorizontalStackLayout  x:Name="HSLayer3">
+            <Image Source="arvores.png"
+            VerticalOptions="Fill"
+            Aspect="Fill"/>
+            <Image Source="arvores.png"
+            VerticalOptions="Fill"
+            Aspect="Fill"/>
+            <Image Source="arvores.png"
+            VerticalOptions="Fill"
+            Aspect="Fill"/>
+        </HorizontalStackLayout>
 
-    <HorizontalStackLayout x:Name="HSLayer4">
-       <Image Source="grama.png" 
-       Margin="0"
-           HeightRequest="120"
-           Aspect="Fill"
-           HorizontalOptions="Fill"
-           VerticalOptions="End"/>
-   <Image Source="grama.png"
-   Margin="0"
-           HeightRequest="120"
-           Aspect="Fill"
-           HorizontalOptions="Fill"
-           VerticalOptions="End"/>
-   <Image Source="grama.png"
-   Margin="0"
-           HeightRequest="120"
-           Aspect="Fill"
-           HorizontalOptions="Fill"
-           VerticalOptions="End"/>
 
-    </HorizontalStackLayout>
-    <Image x:Name="dog"
-    Margin="0,0,200,0"
-    HeightRequest="100"
-    WidthRequest="180"
-    VerticalOptions="Start"
-    
-   
-   
+        <HorizontalStackLayout x:Name="HSLayerChao">
+            <Image Source="grama.png"
+                   Margin="0"
+                   HeightRequest="100"
+                   Aspect="Fill"
+                   HorizontalOptions="Fill"
+                   VerticalOptions="End"/>
+            <Image Source="grama.png"
+                   Margin="0"
+                   HeightRequest="120"
+                   Aspect="Fill"
+                   HorizontalOptions="Fill"
+                   VerticalOptions="End"/>
+            <Image Source="grama.png"
+                   Margin="0"
+                   HeightRequest="120"
+                   Aspect="Fill"
+                   HorizontalOptions="Fill"
+                   VerticalOptions="End"/>
+
+        </HorizontalStackLayout>
+        <Image x:Name="dog"
+               HorizontalOptions="Start"
+               Margin="0,0,0,80"
+               HeightRequest="100"
+               WidthRequest="180"
+               VerticalOptions="End"/>
+
+
+
     </Grid>
 
 </ContentPage>
