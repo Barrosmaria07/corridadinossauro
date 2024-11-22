@@ -9,10 +9,10 @@ public class Animacao
 		protected int AnimacaoAtiva = 1;
 		bool parado = true;
 		int frameAtual = 1;
-		protected Image compImagem;
+		protected Image imageView;
 		public Animacao(Image a)
 		{
-			compImagem = a;
+			imageView = a;
 		}
 
 		public void Stop()
@@ -32,7 +32,7 @@ public class Animacao
 	{
 		  if (parado)
 			return;
-		string nomeArquivo = "";
+		string nomeArquivo = "dog01.png";
 		int tamanhoAnimacao = 0;
 		if (AnimacaoAtiva == 1)
 		{
@@ -49,7 +49,7 @@ public class Animacao
 			nomeArquivo = Animacao3[ frameAtual];
 			tamanhoAnimacao = Animacao3.Count;
 		}
-		compImagem.Source = ImageSource.FromFile(nomeArquivo);
+		imageView.Source = ImageSource.FromFile(nomeArquivo);
 		frameAtual++;
 		if (frameAtual >= tamanhoAnimacao)
 		{
@@ -62,12 +62,14 @@ public class Animacao
 			}
 		}
     }
+	public virtual void QuandoParar()
+		{
+			
+		}
+		
 
 	
-	public virtual void QuandoParar()
-	{
 
-	}
 
 }
   

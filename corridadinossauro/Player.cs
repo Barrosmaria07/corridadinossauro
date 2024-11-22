@@ -27,4 +27,20 @@ public delegate void Callback();
     SetAnimacaoAtiva(1);
     Play();
    }
+
+     public void MoveY(int s)
+    {
+        imageView.TranslationY +=s;
+    }
+
+    public double GetY()
+    {
+        return imageView.TranslationY;
+    }
+    
+    public void SetY(double a)
+    {
+        imageView.TranslationY = a;
+    }
+    
  }
